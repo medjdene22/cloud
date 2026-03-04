@@ -1,0 +1,238 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #e8e8ed;
+  --card: #12121a;
+  --card-foreground: #e8e8ed;
+  --popover: #12121a;
+  --popover-foreground: #e8e8ed;
+  --primary: #3ecf8e;
+  --primary-foreground: #0a0a0f;
+  --secondary: #1a1a25;
+  --secondary-foreground: #b0b0be;
+  --muted: #14141e;
+  --muted-foreground: #6b6b7b;
+  --accent: #1e1e2e;
+  --accent-foreground: #e8e8ed;
+  --destructive: #ef4444;
+  --destructive-foreground: #fecaca;
+  --border: #1e1e2e;
+  --input: #1e1e2e;
+  --ring: #3ecf8e;
+  --chart-1: #3ecf8e;
+  --chart-2: #f97316;
+  --chart-3: #3b82f6;
+  --chart-4: #eab308;
+  --chart-5: #ef4444;
+  --radius: 0.5rem;
+  --sidebar: #0e0e16;
+  --sidebar-foreground: #e8e8ed;
+  --sidebar-primary: #3ecf8e;
+  --sidebar-primary-foreground: #0a0a0f;
+  --sidebar-accent: #1a1a25;
+  --sidebar-accent-foreground: #e8e8ed;
+  --sidebar-border: #1e1e2e;
+  --sidebar-ring: #3ecf8e;
+  --canvas: #08080d;
+  --canvas-dots: #1a1a28;
+  --node-bg: #12121a;
+  --node-border: #2a2a3a;
+  --node-selected: #3ecf8e;
+  --connection-line: #3ecf8e;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-canvas: var(--canvas);
+  --color-canvas-dots: var(--canvas-dots);
+  --color-node-bg: var(--node-bg);
+  --color-node-border: var(--node-border);
+  --color-node-selected: var(--node-selected);
+  --color-connection-line: var(--connection-line);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar for sidebar */
+[data-slot="sidebar-content"] {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar-border) transparent;
+}
+
+[data-slot="sidebar-content"]::-webkit-scrollbar {
+  width: 6px;
+}
+
+[data-slot="sidebar-content"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-slot="sidebar-content"]::-webkit-scrollbar-thumb {
+  background-color: var(--sidebar-border);
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+[data-slot="sidebar-content"]:hover::-webkit-scrollbar-thumb {
+  background-color: var(--muted-foreground);
+}
+
+/* React Flow overrides */
+.react-flow__background {
+  background-color: var(--canvas) !important;
+}
+
+.react-flow__minimap {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+}
+
+.react-flow__controls {
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+}
+
+.react-flow__controls button {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  fill: var(--foreground) !important;
+  color: var(--foreground) !important;
+}
+
+.react-flow__controls button:hover {
+  background-color: var(--accent) !important;
+}
+
+.react-flow__edge-path {
+  stroke: var(--muted-foreground) !important;
+  stroke-width: 2 !important;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--primary) !important;
+  stroke-width: 2.5 !important;
+}
+
+.react-flow__connection-line {
+  stroke: var(--primary) !important;
+  stroke-width: 2 !important;
+}
+
+.react-flow__handle {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: var(--muted-foreground) !important;
+  border: 2px solid var(--card) !important;
+}
+
+.react-flow__handle:hover {
+  background-color: var(--primary) !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.react-flow__node.selected .react-flow__handle {
+  background-color: var(--primary) !important;
+}
+
+/* Valid connection target highlight */
+.react-flow__handle.connectingto {
+  background-color: var(--primary) !important;
+  box-shadow: 0 0 8px rgba(62, 207, 142, 0.5) !important;
+}
+
+/* Invalid connection - line turns red */
+.react-flow__connection .invalid .react-flow__connection-line {
+  stroke: var(--destructive) !important;
+}
+
+/* Edge label styling */
+.react-flow__edge-textwrapper {
+  pointer-events: all;
+}
+
+.react-flow__edge-text {
+  fill: var(--foreground) !important;
+  font-size: 10px !important;
+}
+
+/* Animated connection being drawn */
+.react-flow__connection-path {
+  stroke: var(--primary) !important;
+  stroke-width: 2 !important;
+  stroke-dasharray: 5 5 !important;
+  animation: dashdraw 0.5s linear infinite !important;
+}
+
+@keyframes dashdraw {
+  from {
+    stroke-dashoffset: 10;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Group nodes (VPC / Subnet) */
+.react-flow__node-groupNode {
+  z-index: -1 !important;
+}
+
+.react-flow__node-groupNode.selected {
+  z-index: 0 !important;
+}
+
+/* Ensure child nodes render above group parents */
+.react-flow__node-cloudNode {
+  z-index: 1 !important;
+}
